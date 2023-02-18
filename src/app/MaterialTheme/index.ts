@@ -31,7 +31,7 @@ const light = {
       styleOverrides: {
         root: {
           height: "100%",
-          //background: "#c40909",
+          //   background: "#c40909",
         },
       },
     },
@@ -61,4 +61,5 @@ theme = createTheme(theme, {
     },
   },
 });
+
 export default theme;
