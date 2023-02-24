@@ -18,16 +18,16 @@ export function Footer() {
               </Box>
               <Stack className="contact_links">
                 <Box>
-                  <img src={"/icons/facebook.svg"} />
+                  <img src="/icons/facebook.svg" alt="facebook" />
                 </Box>
                 <Box>
-                  <img src={"/icons/twitter.svg"} />
+                  <img src="/icons/twitter.svg" alt="facebook" />
                 </Box>
                 <Box>
-                  <img src={"/icons/instagram.svg"} />
+                  <img src="/icons/instagram.svg" alt="facebook" />
                 </Box>
                 <Box>
-                  <img src={"/icons/youtube.svg"} />
+                  <img src="/icons/youtube.svg" alt="facebook" />
                 </Box>
               </Stack>
             </Stack>

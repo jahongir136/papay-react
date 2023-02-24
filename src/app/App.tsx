@@ -10,11 +10,11 @@ import { OrdersPage } from "./screens/OrdersPage";
 import { MemberPage } from "./screens/MemberPage";
 import { HelpPage } from "./screens/HelpPage";
 import { LoginPage } from "./screens/LoginPage";
-import { Homepage } from "./screens/Homepage";
 import { NavbarHome } from "./components/header";
 import { NavbarRestaurant } from "./components/header/restaurant";
 import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
+import { Homepage } from "./screens/Homepage";
 
 function App() {
   const [path, setPath] = useState();
