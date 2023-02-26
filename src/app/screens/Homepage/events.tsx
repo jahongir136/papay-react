@@ -9,7 +9,7 @@ export function Events() {
   const events_list = [
     {
       title: "Bo'yin foodga marhamat",
-      desc: "Yangicha uslub Yangicha Tam va yangicha his",
+      desc: "☘️ Yangicha uslub Yangicha Tam va yangicha his",
       date: "2023/02/01",
       author: "Kentucky House",
       location: "Toshkent shaxar nurafshon ko'cha ",
@@ -18,27 +18,27 @@ export function Events() {
 
     {
       title: "Bo'yin foodga marhamat",
-      desc: "Yangicha uslub Yangicha Tam va yangicha his",
+      desc: "☘️ Yangicha uslub Yangicha Tam va yangicha his",
       date: "2023/02/01",
       author: "Kentucky House",
       location: "Toshkent shaxar nurafshon ko'cha ",
-      img: "/restaurant/img-2.jpeg",
+      img: "/restaurant/img-1.jpeg",
     },
     {
       title: "Bo'yin foodga marhamat",
-      desc: "Yangicha uslub Yangicha Tam va yangicha his",
+      desc: "☘️ Yangicha uslub Yangicha Tam va yangicha his",
       date: "2023/02/01",
       author: "Kentucky House",
       location: "Toshkent shaxar nurafshon ko'cha ",
-      img: "/restaurant/img-3.jpeg",
+      img: "/restaurant/img-1.jpeg",
     },
     {
       title: "Bo'yin foodga marhamat",
-      desc: "Yangicha uslub Yangicha Tam va yangicha his",
+      desc: "☘️ Yangicha uslub Yangicha Tam va yangicha his",
       date: "2023/02/01",
       author: "Kentucky House",
       location: "Toshkent shaxar nurafshon ko'cha ",
-      img: "/restaurant/img-4.jpeg",
+      img: "/restaurant/img-1.jpeg",
     },
   ];
 
@@ -55,7 +55,12 @@ export function Events() {
               className={"swiper-button-prev"}
             />
 
-            <div className={"dot_frame_pagination swiper-pagination"}> </div>
+            <img src={"/icons/nuqta.svg"} className={"swiper-button-prev"} />
+            <img src={"/icons/nuqta.svg"} className={"swiper-button-prev"} />
+            <img src={"/icons/nuqta-1.svg"} className={"swiper-button-prev"} />
+            <img src={"/icons/nuqta.svg"} className={"swiper-button-prev"} />
+
+            {/* <div className={"dot_frame_pagination swiper-pagination"}> </div> */}
             <img
               src={"/icons/arrow_right.svg"}
               className={"swiper-button-next"}
@@ -68,10 +73,10 @@ export function Events() {
             centeredSlides={true}
             spaceBetween={30}
             navigation={{
-              nextEl: ".swiper=button-next",
+              nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
             }}
-            pagination={{ el: ".swiper-pogination", clickable: true }}
+            pagination={{ el: ".swiper-pagination", clickable: true }}
             autoplay={{
               delay: 2000,
               disableOnInteraction: true,
