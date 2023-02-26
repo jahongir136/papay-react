@@ -34,7 +34,7 @@ export function Recommendations() {
                         src={"/auth/default_user.svg"}
                         sx={{ width: "35px", heigh: "35px" }}
                       />
-                      <span className={"author_username"}>Johon</span>
+                      <span className={"author_username"}>Iqbol</span>
                     </div>
                     <span className={"article_title"}>
                       Eng sara va mazali Taomlar
@@ -84,7 +84,7 @@ export function Recommendations() {
                         src={"/auth/default_user.svg"}
                         sx={{ width: "35px", heigh: "35px" }}
                       />
-                      <span className={"author_username"}>Johon</span>
+                      <span className={"author_username"}>Ali</span>
                     </div>
                     <span className={"article_title"}>
                       Eng sara va mazali Taomlar
@@ -108,7 +108,7 @@ export function Recommendations() {
                         src={"/auth/default_user.svg"}
                         sx={{ width: "35px", heigh: "35px" }}
                       />
-                      <span className={"author_username"}>Johon</span>
+                      <span className={"author_username"}>Sardor</span>
                     </div>
                     <span className={"article_title"}>
                       Eng sara va mazali Taomlar
