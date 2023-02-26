@@ -111,7 +111,7 @@ export function Recommendations() {
                       <span className={"author_username"}>Sardor</span>
                     </div>
                     <span className={"article_title"}>
-                      Eng sara va mazali Taomlar
+                      Eng sara va top Taomlar
                     </span>
                     <p className={"article_desc"}></p>
                   </Box>
