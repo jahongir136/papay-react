@@ -73,7 +73,7 @@ export function OrdersPage() {
 
                 <div className={"order_user_icon_box"}>
                   <img
-                    src={"/icons/user_icon.svg"}
+                    src={"/auth/default_user.svg"}
                     className={"order_user_prof_img"}
                   />
                 </div>
