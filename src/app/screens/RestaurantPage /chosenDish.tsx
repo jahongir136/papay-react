@@ -42,7 +42,6 @@ export function ChosenDish() {
             })}
           </Swiper>
           <Swiper
-            //   used on swipper here
             loop={true}
             spaceBetween={50}
             slidesPerView={3}

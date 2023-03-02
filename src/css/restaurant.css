@@ -931,7 +931,8 @@
   flex-direction: row;
 }
 
-/* TITLES OF PAGE */
+/* //title-page// */
+
 .chosen_dish_page .chosen_dish_info_box .dish_desc_info {
   height: 112px;
   margin-top: 30px;
