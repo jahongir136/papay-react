@@ -305,7 +305,7 @@
 }
 
 .my_page .order_user_icon_box .order_user_prof_img {
-  /* filter: brightness(0) invert(1); */
+  filter: brightness(0) invert(1);
 }
 
 .my_page .order_info_box .order_user_name {

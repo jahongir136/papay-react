@@ -92,7 +92,7 @@ export function VisitMyPage(props: any) {
                 <TabPanel value={"5"}>
                   <Box className={"menu_name"}>Tanlangan Maqola</Box>
                   <Box className={"menu_content"}>
-                    <TViewer text={<h3>Hello</h3>} />
+                    <TViewer text={`<h3>Hello</h3>`} />
                   </Box>
                 </TabPanel>
 
