@@ -117,7 +117,7 @@ export function VisitMyPage(props: any) {
                 >
                   <div className={"order_user_img"}>
                     <img
-                      src={"/auth/ziyoda.jpeg"}
+                      src={"/auth/ronaldo.jpeg"}
                       className={"order_user_avatar"}
                     />
                     <div className={"order_user_icon_box"}>
@@ -216,3 +216,5 @@ export function VisitMyPage(props: any) {
     </div>
   );
 }
+
+//test

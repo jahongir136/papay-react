@@ -142,7 +142,7 @@ export function VisitOtherPage(props: any) {
                         onClick={() => setValue("1")}
                       >
                         <img src={"/icons/post.svg"} />
-                        <span>Maqolalari</span>
+                        <span>Maqolalarim</span>
                       </div>
                     )}
                   />
