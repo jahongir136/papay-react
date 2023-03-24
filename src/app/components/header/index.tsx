@@ -7,10 +7,13 @@ import {
   Stack,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export function NavbarHome(props: any) {
+  //* INITIALIZATIONS **/
+  const [count, setCount] = useState(0);
+
   return (
     <div className="format home_navbar">
       <Container>
@@ -91,7 +94,7 @@ export function NavbarHome(props: any) {
             <Box className="define_restaurant">
               The Authentic Restaurant & Cafe
             </Box>
-            <Box className="timeline_service">24 soat xizmatdamiz.</Box>
+            <Box className="timeline_service">{count} soat xizmatdamiz.</Box>
             <Box sx={{ mt: "90px" }}>
               <Button
                 variant="contained"
@@ -101,6 +104,7 @@ export function NavbarHome(props: any) {
                   background: "#1976d2",
                   color: "#ffffff",
                 }}
+                onClick={() => setCount(count + 1)}
               >
                 RO'YHATDAN O'TISH
               </Button>
