@@ -10,12 +10,11 @@ import { Recommendations } from "./recommendations";
 import "../../../css/home.css";
 
 export function Homepage() {
-  useEffect(() => {
-    console.log("componentDidMount => Data featch");
+  // selector: store => data
 
-    return () => {
-      console.log("componentWillUnmount process");
-    };
+  useEffect(() => {
+    // backend data request => data
+    // slice: data => store
   }, []);
   return (
     <div className="homepage">
