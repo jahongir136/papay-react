@@ -12,8 +12,21 @@ class Car extends Component {
     };
   }
   changeColor = () => {
-    this.setState({ color: "blue", model: "resla" });
+    this.setState({ color: "blue", model: "Tesla" });
   };
+
+  componentDidMount() {
+    console.log("run commonentDidMount");
+    // runs after frist render = RETRIEVE DATA FROM BACKEND SERVER
+  }
+
+  componentWillUnmount() {
+    console.log("run componentWillUnmount");
+    // runs after component unmount
+  }
+
+  componentDidUpdate() {}
+
   render() {
     return (
       <div>
