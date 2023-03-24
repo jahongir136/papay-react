@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "@mui/material";
 import { Statistics } from "./statistics";
 import { TopRestaurants } from "./topRestaurants";
@@ -10,6 +10,13 @@ import { Recommendations } from "./recommendations";
 import "../../../css/home.css";
 
 export function Homepage() {
+  useEffect(() => {
+    console.log("componentDidMount => Data featch");
+
+    return () => {
+      console.log("componentWillUnmount process");
+    };
+  }, []);
   return (
     <div className="homepage">
       <Statistics />
