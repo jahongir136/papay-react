@@ -17,19 +17,19 @@ const HomePageSlice = createSlice({
     setTopRestaurants: (state, action) => {
       state.topRestaurants = action.payload;
     },
-    bestRestaurants: (state, action) => {
+    setBestRestaurants: (state, action) => {
       state.bestRestaurants = action.payload;
     },
-    trendProducts: (state, action) => {
+    setTrendBoArticles: (state, action) => {
       state.trendProducts = action.payload;
     },
-    bestBoArticles: (state, action) => {
+    setBestBoArticles: (state, action) => {
       state.bestBoArticles = action.payload;
     },
-    trendBoArticles: (state, action) => {
+    setTrendProducts: (state, action) => {
       state.trendBoArticles = action.payload;
     },
-    newsBoArticles: (state, action) => {
+    setNewsBoArticles: (state, action) => {
       state.newsBoArticles = action.payload;
     },
   },
@@ -37,11 +37,11 @@ const HomePageSlice = createSlice({
 
 export const {
   setTopRestaurants,
-  bestRestaurants,
-  trendBoArticles,
-  bestBoArticles,
-  trendProducts,
-  newsBoArticles,
+  setBestRestaurants,
+  setTrendBoArticles,
+  setBestBoArticles,
+  setTrendProducts,
+  setNewsBoArticles,
 } = HomePageSlice.actions;
 
 const HomePageReducer = HomePageSlice.reducer;
