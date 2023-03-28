@@ -20,13 +20,13 @@ const HomePageSlice = createSlice({
     setBestRestaurants: (state, action) => {
       state.bestRestaurants = action.payload;
     },
-    setTrendBoArticles: (state, action) => {
+    setTrendProducts: (state, action) => {
       state.trendProducts = action.payload;
     },
     setBestBoArticles: (state, action) => {
       state.bestBoArticles = action.payload;
     },
-    setTrendProducts: (state, action) => {
+    setTrendBoArticles: (state, action) => {
       state.trendBoArticles = action.payload;
     },
     setNewsBoArticles: (state, action) => {
