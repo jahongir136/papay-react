@@ -16,6 +16,7 @@ import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
 import Car from "./screens/testCar";
 import { Homepage } from "./screens/Homepage";
+import AuthenticationModel from "./components/auth";
 
 function App() {
   const [path, setPath] = useState();
@@ -29,32 +30,6 @@ function App() {
       ) : (
         <NavbarOthers setPath={setPath} />
       )}
-
-      {/* <nav>
-          <ul>
-            <li>
-              <Link to="/restaurant">RestaurantPage</Link>
-            </li>
-            <li>
-              <Link to="/community">CommunityPage</Link>
-            </li>
-            <li>
-              <Link to="/orders">OrdersPage</Link>
-            </li>
-            <li>
-              <Link to="/member-page">MemberPage</Link>
-            </li>
-            <li>
-              <Link to="/help">HelpPage</Link>
-            </li>
-            <li>
-              <Link to="/login">LoginPage</Link>
-            </li>
-            <li>
-              <Link to="/">Homepage</Link>
-            </li>
-          </ul>
-        </nav> */}
 
       <Switch>
         <Route path="/restaurant">
@@ -82,12 +57,9 @@ function App() {
       </Switch>
 
       <Footer />
+      <AuthenticationModel />
     </Router>
   );
 }
 
 export default App;
-
-function Home() {
-  return <h2>Home</h2>;
-}
