@@ -36,6 +36,7 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { useHistory } from "react-router-dom";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -52,6 +53,7 @@ const targetRestaurantsRetriever = createSelector(
 
 export function AllRestaurants() {
   //** INITIALIZATIONS  */
+  const history = useHistory();
   const { setTargetRestaurants } = actionDispatch(useDispatch());
   const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
   const [targetSearchObject, setTargetSearchObject] = useState<SerachObj>({
@@ -70,6 +72,9 @@ export function AllRestaurants() {
   }, [targetSearchObject]);
 
   //** HENDLEAR */
+  const chosenRestaurantHandler = (id: string) => {
+    history.push(`/restaurant/${id}`);
+  };
   const searchHandlear = (category: string) => {
     targetSearchObject.page = 1;
     targetSearchObject.order = category;
@@ -142,6 +147,7 @@ export function AllRestaurants() {
                 const image_path = `${serverApi}/${ele.mb_image}`;
                 return (
                   <Card
+                    onClick={() => chosenRestaurantHandler(ele._id)}
                     variant="outlined"
                     sx={{
                       minHeight: 410,
