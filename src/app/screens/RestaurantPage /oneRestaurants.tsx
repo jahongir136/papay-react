@@ -32,6 +32,13 @@ import { ProductSearchObj } from "../../../types/others";
 import ProductApiService from "../../apiServices/productApiService";
 import { serverApi } from "../../../lib/config";
 import RestaurantApiServices from "../../apiServices/restaurantApiService";
+import assert from "assert";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { Definer } from "../../../lib/Definer";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -80,6 +87,7 @@ export function OneRestaurants() {
       restaurant_mb_id: restaurant_id,
       product_collection: "dish",
     });
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
   useEffect(() => {
     const restaurantService = new RestaurantApiServices();
@@ -93,7 +101,7 @@ export function OneRestaurants() {
       .getTargetProducts(targetProductSearchObj)
       .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [targetProductSearchObj]);
+  }, [targetProductSearchObj, productRebuild]);
 
   //** HENDLEAR */
   const chosenRestaurantHandler = (id: string) => {
@@ -101,6 +109,37 @@ export function OneRestaurants() {
     targetProductSearchObj.restaurant_mb_id = id;
     setTargetProductSearchObj({ ...targetProductSearchObj });
     history.push(`/restaurant/${id}`);
+  };
+  const searchCollectionHandler = (collection: string) => {
+    targetProductSearchObj.page = 1;
+    targetProductSearchObj.product_collection = collection;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+  const searchOrderHandler = (order: string) => {
+    targetProductSearchObj.page = 1;
+    targetProductSearchObj.order = order;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberSetvice = new MemberApiService(),
+        like_result: any = await memberSetvice.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+
+      assert.ok(like_result, Definer.auth_err1);
+      console.log("like-reult", like_result);
+
+      await sweetTopSmallSuccessAlert("seccess", 700, false);
+      setProductRebuild(new Date());
+    } catch (err: any) {
+      console.log("targetLikeProduct ERROR:::", err);
+      sweetErrorHandling(err).then();
+    }
   };
   return (
     <div className="single_restaurant">
@@ -182,16 +221,32 @@ export function OneRestaurants() {
             sx={{ mt: "65px" }}
           >
             <Box className={"dishs_filter_box"}>
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => searchOrderHandler("createdAt")}
+              >
                 new
               </Button>
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => searchOrderHandler("product_price")}
+              >
                 price
               </Button>
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => searchOrderHandler("product_likes")}
+              >
                 likes
               </Button>
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => searchOrderHandler("product_views")}
+              >
                 views
               </Button>
             </Box>
@@ -203,19 +258,39 @@ export function OneRestaurants() {
           >
             <Stack className={"dish_category_box"}>
               <div className={"dish_category_main"}>
-                <Button variant={"contained"} color="secondary">
+                <Button
+                  variant={"contained"}
+                  color="secondary"
+                  onClick={() => searchCollectionHandler("etc")}
+                >
                   Boshqa
                 </Button>
-                <Button variant={"contained"} color="secondary">
+                <Button
+                  variant={"contained"}
+                  color="secondary"
+                  onClick={() => searchCollectionHandler("dessert")}
+                >
                   desert
                 </Button>
-                <Button variant={"contained"} color="secondary">
+                <Button
+                  variant={"contained"}
+                  color="secondary"
+                  onClick={() => searchCollectionHandler("drink")}
+                >
                   ichmliklar
                 </Button>
-                <Button variant={"contained"} color="secondary">
+                <Button
+                  variant={"contained"}
+                  color="secondary"
+                  onClick={() => searchCollectionHandler("salad")}
+                >
                   salad
                 </Button>
-                <Button variant={"contained"} color="secondary">
+                <Button
+                  variant={"contained"}
+                  color="secondary"
+                  onClick={() => searchCollectionHandler("dish")}
+                >
                   ovqatlar
                 </Button>
               </div>
@@ -249,6 +324,7 @@ export function OneRestaurants() {
                             icon={<FavoriteBorder style={{ color: "white" }} />}
                             id={product._id}
                             checkedIcon={<Favorite style={{ color: "red" }} />}
+                            onClick={targetLikeProduct}
                             /**@ts-ignore */
                             checked={
                               product?.me_liked &&
