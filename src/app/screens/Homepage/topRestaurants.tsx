@@ -10,11 +10,7 @@ import { CardOverflow, CssVarsProvider, IconButton } from "@mui/joy";
 import { Favorite, Visibility } from "@mui/icons-material";
 import VisibilityIcons from "@mui/icons-material/Visibility";
 
-//REDUX
-import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import { retrievetopRestaurants } from "../../screens/Homepage/selector";
-import { Restaurant } from "../../../types/user";
+// OTHERS
 import { serverApi } from "../../../lib/config";
 import {
   sweetErrorHandling,
@@ -24,7 +20,12 @@ import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiServices/memberApiService";
 import { useHistory } from "react-router-dom";
-
+//REDUX
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrievetopRestaurants } from "../../screens/Homepage/selector";
+import { Restaurant } from "../../../types/user";
+// REDUX SELECTOR
 const topRestaurantRetriever = createSelector(
   retrievetopRestaurants,
   (topRestaurants) => ({
