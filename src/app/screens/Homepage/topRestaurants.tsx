@@ -44,6 +44,7 @@ export function TopRestaurants() {
   const chosenRestaurantHandler = (id: string) => {
     history.push(`/restaurant/${id}`);
   };
+
   const targetLikeTop = async (e: any, id: string) => {
     try {
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
