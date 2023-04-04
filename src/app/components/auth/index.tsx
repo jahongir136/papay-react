@@ -9,7 +9,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
-import MemberApiServices from "../../apiServices/memberApiServices";
+import MemberApiService from "../../apiServices/memberApiService";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -66,7 +66,7 @@ export default function AuthenticationModal(props: any) {
         mb_password: mb_password,
       };
 
-      const memberApiService = new MemberApiServices();
+      const memberApiService = new MemberApiService();
       await memberApiService.signupRequest(signup_data);
       props.handleSignUpClose();
       window.location.reload();
@@ -87,7 +87,7 @@ export default function AuthenticationModal(props: any) {
         mb_password: mb_password,
       };
 
-      const memberApiService = new MemberApiServices();
+      const memberApiService = new MemberApiService();
       await memberApiService.loginRequest(login_data);
 
       props.handleLoginClose();

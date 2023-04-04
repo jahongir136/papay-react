@@ -65,15 +65,22 @@ export function BestRestaurants() {
                           zIndex: 2,
                           borderRadius: "50%",
                           right: "1rem",
-                          bottom: 45,
+                          bottom: 0,
                           transform: "translateY(50%)",
                           color: "rgba(0, 0, 0,.4)",
                         }}
                       >
-                        <Favorite style={{ fill: "white" }} />
+                        <Favorite
+                          style={{
+                            fill:
+                              ele?.me_liked && ele?.me_liked[0]?.my_favorite
+                                ? "red"
+                                : "white",
+                          }}
+                        />
                       </IconButton>
                     </CardOverflow>
-                    <Typography level="h2" sx={{ fontSize: "20px", mt: 2 }}>
+                    <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
                       {ele.mb_nick}
                     </Typography>
                     <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>

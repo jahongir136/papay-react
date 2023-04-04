@@ -2,6 +2,7 @@ import { MeFollowed } from "./follow";
 import { MeLiked } from "./product";
 
 export interface Restaurant {
+  me_liken: any;
   _id: string;
   mb_nick: string;
   mb_phone: string;

@@ -18,7 +18,7 @@ import {
 } from "../../screens/Homepage/slice";
 import { retrievetopRestaurants } from "../../screens/Homepage/selector";
 import { Restaurant } from "../../../types/user";
-import RestaurantApiServices from "../../apiServices/restaurantApiServices";
+import RestaurantApiService from "../../apiServices/restaurantApiService";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -34,18 +34,18 @@ export function Homepage() {
 
   useEffect(() => {
     // backend data request => data
-    const restaurantServices = new RestaurantApiServices();
-    restaurantServices
+    const restaurantService = new RestaurantApiService();
+    restaurantService
       .getTopRestaurants()
       .then((data) => {
         setTopRestaurants(data);
       })
       .catch((err) => console.log(err));
 
-    restaurantServices
+    restaurantService
       .getRestaurants({ page: 1, limit: 4, order: "mb_point" })
-
       .then((data) => {
+        console.log("best", data);
         setBestRestaurants(data);
       })
       .catch((err) => console.log(err));
