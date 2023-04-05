@@ -107,7 +107,7 @@ export function OneRestaurants() {
       .getTargetProducts(targetProductSearchObj)
       .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [chosenRestaurantId, targetProductSearchObj, productRebuild]);
+  }, [targetProductSearchObj, productRebuild]);
 
   //** HENDLEAR */
   const chosenRestaurantHandler = (id: string) => {
@@ -318,6 +318,9 @@ export function OneRestaurants() {
                     key={product._id}
                   >
                     <Box
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
                       className={"dish_img"}
                       sx={{
                         backgroundImage: `url(${image_path})`,
