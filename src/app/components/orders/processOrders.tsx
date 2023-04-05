@@ -2,7 +2,18 @@ import { Box, Stack } from "@mui/material";
 import TabPanel from "@mui/lab/TabPanel";
 import Button from "@mui/material/Button";
 import moment from "moment";
+//REDUX
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveProcessOrders } from "../../screens/OrdersPage/selector";
 
+// REDUX SELECTOR
+const processOrdersRetriever = createSelector(
+  retrieveProcessOrders,
+  (processOrders) => ({
+    processOrders,
+  })
+);
 const processOrders = [
   [1, 2, 3],
   [1, 2, 3],
@@ -10,6 +21,8 @@ const processOrders = [
 ];
 
 export default function ProcessOrders(props: any) {
+  /** INITIALIZATIONS */
+  // const { processOrders } = useSelector(processOrdersRetriever);
   return (
     <TabPanel value={"2"}>
       <Stack>

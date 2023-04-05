@@ -16,7 +16,7 @@ const pausedOrdersRetriever = createSelector(
   })
 );
 
-const finishedOrders = [
+const pausedOrders = [
   [1, 2, 3],
   [1, 2, 3],
   [1, 2, 3],
@@ -24,11 +24,11 @@ const finishedOrders = [
 
 export default function FinishedOrders(props: any) {
   /** INITIALIZATIONS */
-  const { pausedOrders } = useSelector(pausedOrdersRetriever);
+  // const { pausedOrders } = useSelector(pausedOrdersRetriever);
   return (
     <TabPanel value={"1"}>
       <Stack>
-        {finishedOrders?.map((order) => {
+        {pausedOrders?.map((order) => {
           return (
             <Box className={"order_main_box"}>
               <Box className={"order_box_scroll"}>

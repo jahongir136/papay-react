@@ -39,11 +39,14 @@ export function NavbarRestaurant(props: any) {
                 Oshxona
               </NavLink>
             </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/orders" activeClassName="underline">
-                Buyurtma
-              </NavLink>
-            </Box>
+            {props.verifiedMemberData ? (
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/orders" activeClassName="underline">
+                  Buyurtma
+                </NavLink>
+              </Box>
+            ) : null}
+
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/community" activeClassName="under-line">
                 Jamiyat

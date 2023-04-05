@@ -7,12 +7,15 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { Product } from "../../../types/product";
-import { setTrendProducts } from "./slice";
 import ProductApiService from "../../apiServices/productApiService";
 import { createSelector } from "reselect";
 import { retrieveTrendProducts } from "./selector";
 import { serverApi } from "../../../lib/config";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { Restaurant } from "../../../types/user";
+import { setChosenRestaurant } from "../RestaurantPage /slice";
+import { retrieveChosenProduct } from "../RestaurantPage /selector";
+import { setTrendProducts } from "./slice";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -44,7 +47,7 @@ export function BestDishes() {
 
   /** HENDLER */
 
-  const chosenDishHendler = (id: string) => {
+  const chosenDishHandler = (id: string) => {
     history.push(`/restaurant/dish/${id}`);
   };
   return (
@@ -70,7 +73,7 @@ export function BestDishes() {
                   >
                     <div className={"dish_sale"}>{size_volume}</div>
                     <div className={"view_btn"}>
-                      <div onClick={() => chosenDishHendler(product._id)}>
+                      <div onClick={() => chosenDishHandler(product._id)}>
                         Batafsil ko'rish
                       </div>
                       <img
@@ -96,4 +99,7 @@ export function BestDishes() {
       </Container>
     </div>
   );
+}
+function setChosenProducts(data: Product): any {
+  throw new Error("Function not implemented.");
 }

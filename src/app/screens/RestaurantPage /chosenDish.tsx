@@ -60,15 +60,14 @@ const chosenRestaurantRetriever = createSelector(
 const chosen_list = Array.from(Array(3).keys());
 export function ChosenDish() {
   /** INITIALIZATION  */
-  let { dish_id } = useParams<{ dish_id: string }>();
   const { setChosenProduct, setChosenRestaurant } = actionDispatch(
     useDispatch()
   );
   const { chosenProduct } = useSelector(chosenProductRetriever);
   const { chosenRestaurant } = useSelector(chosenRestaurantRetriever);
+  let { dish_id } = useParams<{ dish_id: string }>();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
-
   const dishRelatedProcess = async () => {
     try {
       const productService = new ProductApiService();
@@ -199,9 +198,9 @@ export function ChosenDish() {
               </div>
             </Box>
             <p className={"dish_desc_info"}>
-              {chosenProduct?.product_discount
-                ? chosenProduct?.product_discount
-                : "no discripton"}
+              {chosenProduct?.product_description
+                ? chosenProduct?.product_description
+                : "no description"}
             </p>
             <Marginer
               direction="horizontal"

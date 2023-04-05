@@ -126,7 +126,7 @@ export function OneRestaurants() {
     targetProductSearchObj.order = order;
     setTargetProductSearchObj({ ...targetProductSearchObj });
   };
-  const chosenDishHendler = (id: string) => {
+  const chosenDishHandler = (id: string) => {
     history.push(`/restaurant/dish/${id}`);
   };
 
@@ -141,7 +141,6 @@ export function OneRestaurants() {
         });
 
       assert.ok(like_result, Definer.auth_err1);
-      console.log("like-reult", like_result);
 
       await sweetTopSmallSuccessAlert("seccess", 700, false);
       setProductRebuild(new Date());
@@ -313,7 +312,11 @@ export function OneRestaurants() {
                     : product.product_size + "size";
 
                 return (
-                  <Box className={"dish_box"} key={product._id}>
+                  <Box
+                    onClick={() => chosenDishHandler(product._id)}
+                    className={"dish_box"}
+                    key={product._id}
+                  >
                     <Box
                       className={"dish_img"}
                       sx={{
@@ -334,7 +337,6 @@ export function OneRestaurants() {
                             id={product._id}
                             checkedIcon={<Favorite style={{ color: "red" }} />}
                             onClick={targetLikeProduct}
-                            /**@ts-ignore */
                             checked={
                               product?.me_liked &&
                               product?.me_liked[0]?.my_favorite

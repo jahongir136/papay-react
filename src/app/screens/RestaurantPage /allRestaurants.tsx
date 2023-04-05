@@ -252,6 +252,7 @@ export function AllRestaurants() {
                         <div
                           ref={(element) => (refs.current[ele._id] = element)}
                         >
+                          {" "}
                           {ele.mb_likes}
                         </div>
                         <FavoriteIcon

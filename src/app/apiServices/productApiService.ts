@@ -31,7 +31,7 @@ class ProductApiService {
 
   async getChosenDish(dish_id: string) {
     try {
-      const url = `products/${dish_id}`,
+      const url = `/products/${dish_id}`,
         result = await axios.get(this.path + url, {
           withCredentials: true,
         });
