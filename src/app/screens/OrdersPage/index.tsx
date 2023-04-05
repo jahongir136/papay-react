@@ -5,15 +5,33 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-
 import PausedOrders from "../../components/orders/pausedOrders";
 import ProcessOrders from "../../components/orders/processOrders";
 import FinishedOrders from "../../components/orders/finishedOrders";
+import { Order } from "../../../types/order";
+//REDUX
+import { Dispatch } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import {
+  setFinishedOrders,
+  setPausedOrders,
+  setProcessOrders,
+} from "../../screens/OrdersPage/slice";
+
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispach(setPausedOrders(data)),
+  setProcessOrders: (data: Order[]) => dispach(setProcessOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispach(setFinishedOrders(data)),
+});
 
 export function OrdersPage() {
   /** INITIALIZATIONS **/
-  const [value, setValue] = useState("2");
-  console.log("value", value);
+  const [value, setValue] = useState("1");
+  const { setFinishedOrders, setPausedOrders, setProcessOrders } =
+    actionDispatch(useDispatch());
+
+  useEffect(() => {}, []);
 
   /** HANDLERS **/
 
