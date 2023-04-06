@@ -66,7 +66,12 @@ export function NavbarOthers(props: any) {
               </NavLink>
             </Box>
 
-            <Basket />
+            <Basket
+              cartItems={props.cartItems}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+            />
             {!props.verifiedMemberData ? (
               <Box>
                 <Button
