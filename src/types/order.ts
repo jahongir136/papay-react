@@ -18,6 +18,6 @@ export interface Order {
   createdAt: Date;
   updatedAt: Date;
   /** from aggregation */
-  order_item: OrderItem[];
+  order_items: OrderItem[];
   product_data: Product[];
 }

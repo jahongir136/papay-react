@@ -6,6 +6,14 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveProcessOrders } from "../../screens/OrdersPage/selector";
+import { Order } from "../../../types/order";
+import { Product } from "../../../types/product";
+import { serverApi } from "../../../lib/config";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../lib/sweetAlert";
+import OrderApiService from "../../apiServices/orderApiService";
 
 // REDUX SELECTOR
 const processOrdersRetriever = createSelector(
@@ -14,34 +22,57 @@ const processOrdersRetriever = createSelector(
     processOrders,
   })
 );
-const processOrders = [
-  [1, 2, 3],
-  [1, 2, 3],
-  [1, 2, 3],
-];
 
 export default function ProcessOrders(props: any) {
   /** INITIALIZATIONS */
-  // const { processOrders } = useSelector(processOrdersRetriever);
+  const { processOrders } = useSelector(processOrdersRetriever);
+  const finishOrderHandler = async (event: any) => {
+    try {
+      const order_id = event.target.value;
+      const data = { order_id: order_id, order_status: "DELETED" };
+
+      if (!localStorage.getItem("member_data")) {
+        sweetFailureProvider("Please login frist", true);
+      }
+
+      let confirmation = window.confirm(
+        "Buyurtmani olganingizni tasdiqlaysizmi ?"
+      );
+      if (confirmation) {
+        const orderService = new OrderApiService();
+        await orderService.updateOrderStatus(data);
+        props.setOrderRebuild(new Date());
+      }
+    } catch (err) {
+      console.log("deleteOrderHandler, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
   return (
     <TabPanel value={"2"}>
       <Stack>
-        {processOrders?.map((order) => {
+        {processOrders?.map((order: Order) => {
           return (
             <Box className={"order_main_box"}>
               <Box className={"order_box_scroll"}>
-                {order.map((item) => {
-                  const image_path = "/others/qovurma.jpg";
+                {order.order_items.map((item) => {
+                  const product: Product = order.product_data.filter(
+                    (ele) => ele._id === item.product_id
+                  )[0];
+                  const image_path = `${serverApi}/${product.product_images[0]}`;
+
                   return (
                     <Box className={"ordersName_price"}>
                       <img src={image_path} className={"orderDishImage"} />
-                      <p className={"titleDish"}>Qovurma</p>
+                      <p className={"titleDish"}>{product.product_name}</p>
                       <Box className={"priceBox"}>
-                        <p>$11</p>
+                        <p>${item.item_price}</p>
                         <img src={"/icons/Close.svg"} />
-                        <p>10</p>
+                        <p>{item.item_quantity}</p>
                         <img src={"/icons/pause.svg"} />
-                        <p style={{ marginLeft: "15px" }}>$110</p>
+                        <p style={{ marginLeft: "15px" }}>
+                          ${item.item_price * item.item_quantity}
+                        </p>
                       </Box>
                     </Box>
                   );
@@ -50,17 +81,34 @@ export default function ProcessOrders(props: any) {
               <Box className={"total_price_box blue_solid"}>
                 <Box className={"boxTotal"}>
                   <p>maxsulot narxi</p>
-                  <p>$22</p>
+                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
                   <img src={"/icons/plus.svg"} style={{ marginLeft: "20px" }} />
                   <p>Yetkazish xizmati</p>
-                  <p>$2</p>
+                  <p>${order.order_delivery_cost}</p>
                   <img
                     src={"/icons/pause.svg"}
                     style={{ marginLeft: "20px" }}
                   />
                   <p>Jami narxi</p>
-                  <p>$24</p>
+                  <p>${order.order_total_amount}</p>
                 </Box>
+                <p className={"data_compl"}>
+                  {moment(order.createdAt).format("YY-MM-DD HH:mm")}
+                </p>
+                <Button
+                  value={order._id}
+                  onClick={finishOrderHandler}
+                  variant="contained"
+                  style={{
+                    background: "#0288D1",
+                    color: "#FFFFFFF",
+                    borderRadius: "10px",
+                    boxShadow:
+                      "0px 4px rgba(0, 0, 0.25), insert 0px 4px 4px rgba(0, 0, 0, 0.25);",
+                  }}
+                >
+                  Yakunlash
+                </Button>
               </Box>
             </Box>
           );
