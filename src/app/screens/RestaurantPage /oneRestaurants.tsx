@@ -68,7 +68,7 @@ const targetProductsRetriever = createSelector(
   })
 );
 
-export function OneRestaurants() {
+export function OneRestaurants(props: any) {
   //** INITIALIZATIONS  */
   const history = useHistory();
 
@@ -318,9 +318,7 @@ export function OneRestaurants() {
                     key={product._id}
                   >
                     <Box
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
+                      onClick={() => chosenDishHandler(product._id)}
                       className={"dish_img"}
                       sx={{
                         backgroundImage: `url(${image_path})`,
@@ -328,6 +326,9 @@ export function OneRestaurants() {
                     >
                       <div className={"dish_sale"}>{size_volume} </div>
                       <Button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                         className={"like_view_btn"}
                         style={{ left: "36px" }}
                       >
@@ -349,7 +350,13 @@ export function OneRestaurants() {
                           />
                         </Badge>
                       </Button>
-                      <Button className={"view_btn"}>
+                      <Button
+                        className={"view_btn"}
+                        onClick={(e) => {
+                          props.onAdd(product);
+                          e.stopPropagation();
+                        }}
+                      >
                         <img
                           src={"/icons/shopping_cart.svg"}
                           style={{ display: "flex" }}

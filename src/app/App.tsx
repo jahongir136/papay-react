@@ -26,6 +26,9 @@ import {
 import { Definer } from "../lib/Definer";
 import MemberApiService from "./apiServices/memberApiService";
 import "../app/apiServices/verify";
+import { CartItem } from "../types/others";
+import { Produced } from "immer/dist/internal";
+import { Product } from "../types/product";
 
 function App() {
   /** INITIALIZATION */
@@ -40,6 +43,10 @@ function App() {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  const cartJson: any = localStorage.getItem("cart_data");
+  const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
+  const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
 
   useEffect(() => {
     console.log("=== useEffect: App ===");
@@ -78,6 +85,35 @@ function App() {
     }
   };
 
+  const onAdd = (product: Product) => {
+    const exist: any = cartItems.find(
+      (item: CartItem) => item._id === product._id
+    );
+    if (exist) {
+      const cart_updated = cartItems.map((item: CartItem) =>
+        item._id === product._id
+          ? { ...exist, quantity: exist.quantity + 1 }
+          : item
+      );
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    } else {
+      const new_item: CartItem = {
+        _id: product._id,
+        quantity: 1,
+        name: product.product_name,
+        price: product.product_price,
+        image: product.product_images[0],
+      };
+      const cart_updated = [...cartItems, { ...new_item }];
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    }
+  };
+  const onRemove = () => {};
+  const onDelete = () => {};
+  const onDeleteAll = () => {};
+
   return (
     <Router>
       {main_path == "/" ? (
@@ -103,6 +139,8 @@ function App() {
           handleCloseLogOut={handleCloseLogOut}
           handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
+          cartItems={cartItems}
+          onAdd={onAdd}
         />
       ) : (
         <NavbarOthers
@@ -120,7 +158,7 @@ function App() {
 
       <Switch>
         <Route path="/restaurant">
-          <RestaurantPage />
+          <RestaurantPage onAdd={onAdd} />
         </Route>
         <Route path="/community">
           <CommunityPage />
