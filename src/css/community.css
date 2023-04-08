@@ -25,7 +25,6 @@
 .community_page .community_all_frame {
   width: 68%;
   height: 1150px;
-
   background: #0b0e11;
   border: 1px solid #ffffff;
   border-radius: 34px;
@@ -34,7 +33,6 @@
 .community_page .chat_frame .chat_top {
   width: 100%;
   height: 94px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,10 +51,9 @@
   padding: 17px;
   width: 100%;
   height: 100%;
-
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
+  flex-direction: column;
   overflow: hidden;
 }
 
@@ -72,8 +69,8 @@
   width: 100%;
   height: 94px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   border-top: 1px solid rgba(228, 228, 228, 0.83);
 }
 
@@ -83,8 +80,8 @@
   height: 50px;
 
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   background: #f7f7f7;
   border-radius: 28px;
   border: none;
@@ -101,10 +98,9 @@
   margin-left: 14px;
   width: 50px;
   height: 50px;
-
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   border-radius: 50%;
   background: linear-gradient(180deg, #55a99d 0%, #007665 100%);
   border: none;
@@ -115,7 +111,6 @@
   padding: 9px;
   width: auto;
   height: auto;
-
   display: flex;
   background: rgba(228, 228, 228, 0.83);
   border-radius: 20px 20px 20px 0px;
@@ -125,7 +120,6 @@
   padding: 9px;
   width: auto;
   height: auto;
-
   display: flex;
   background: #d0ece8;
   border-radius: 20px 20px 0px 20px;
@@ -134,10 +128,9 @@
 .community_all_frame .article_tabs {
   width: 100%;
   height: 94px;
-
   display: flex;
-  flex-direction: row;
   align-items: center;
+  flex-direction: row;
   justify-content: center;
   border-bottom: 1px solid rgba(228, 228, 228, 0.83);
 }
@@ -161,17 +154,15 @@
   position: relative;
   width: 50%;
   height: 295px;
-
   display: flex;
   border-radius: 0px 90px 0px 0px;
-
+  background: url("/public/community/cute_girl.jpeg");
   background-size: cover;
 }
 
 .community_page .article_box .article_desc {
   width: 50%;
   height: 100%;
-
   display: flex;
   flex-direction: column;
 }
@@ -183,7 +174,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
@@ -195,7 +185,6 @@
 .community_page .article_share {
   width: 100%;
   height: 10%;
-
   display: flex;
   justify-content: flex-end;
   flex-direction: row;
@@ -205,9 +194,9 @@
   width: 100%;
   height: 90px;
   display: flex;
+  align-items: center;
   justify-content: center;
   color: white;
-
   border-top: 1px solid rgba(228, 228, 228, 0.83);
 }
 
@@ -215,7 +204,6 @@
   margin-top: 20px;
   width: 100%;
   height: 250px;
-
   display: flex;
   background: #182226;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25),
@@ -223,12 +211,10 @@
     inset 0px 4px 16px rgba(242, 189, 87, 0.04);
   border-radius: 16px;
 }
-
 .community_page .review_container {
   margin-top: 15px;
   width: 100%;
   height: 90%;
-
   display: flex;
   flex-direction: row;
 }
@@ -237,10 +223,9 @@
   margin-left: 10px;
   width: 110px;
   height: 100%;
-
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 }
 
 .community_page .review_user_photo img {
@@ -264,7 +249,6 @@
   margin-left: 33px;
   width: 75%;
   height: 100%;
-
   display: flex;
   flex-direction: column;
 }
@@ -324,7 +308,6 @@
 .community_page .all_article_box .all_article_img {
   width: 155px;
   height: 155px;
-
   border-radius: 30px 0px 0px 30px;
   background-size: cover;
 }
