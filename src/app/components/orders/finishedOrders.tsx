@@ -34,13 +34,13 @@ export default function FinishedOrders(props: any) {
                   const image_path = `${serverApi}/${product.product_images[0]}`;
                   return (
                     <Box className={"ordersName_price"}>
-                      <img src={image_path} className={"orderDishImage"} />
+                      <img src={image_path} className={"orderDishImg"} alt="" />
                       <p className={"titleDish"}>{product.product_name}</p>
                       <Box className={"priceBox"}>
                         <p>${item.item_price}</p>
-                        <img src={"/icons/Close.svg"} />
+                        <img src={"/icons/Close.svg"} alt="" />
                         <p>{item.item_quantity}</p>
-                        <img src={"/icons/pause.svg"} />
+                        <img src={"/icons/pause.svg"} alt="" />
                         <p style={{ marginLeft: "15px" }}>
                           ${item.item_price * item.item_quantity}
                         </p>

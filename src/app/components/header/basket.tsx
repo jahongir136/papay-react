@@ -46,7 +46,6 @@ export default function Basket(props: any) {
       handleClose();
 
       props.setOrderRebuild(new Date());
-
       history.push("/orders");
     } catch (err: any) {
       console.log(err);
@@ -73,7 +72,6 @@ export default function Basket(props: any) {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        // onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {

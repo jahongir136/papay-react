@@ -2,12 +2,12 @@ import { Product } from "./product";
 
 export interface OrderItem {
   _id: string;
-  createdAt: Date;
-  updatedAt: Date;
   item_quantity: number;
   item_price: number;
   order_id: string;
   product_id: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 export interface Order {
   _id: string;

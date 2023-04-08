@@ -41,18 +41,16 @@ export function OrdersPage(props: any) {
       .getMyOrders("paused")
       .then((data) => setPausedOrders(data))
       .catch((err) => console.log(err));
-    // paused ordes
-    // process ordes
     orderService
       .getMyOrders("process")
       .then((data) => setProcessOrders(data))
       .catch((err) => console.log(err));
-    // finished ordes
+
     orderService
       .getMyOrders("finished")
       .then((data) => setFinishedOrders(data))
       .catch((err) => console.log(err));
-  }, [props.setOrderRebuild]);
+  }, [props.orderRebuild]);
 
   /** HANDLERS **/
 
@@ -89,10 +87,9 @@ export function OrdersPage(props: any) {
             </Box>
 
             <Stack className={"order_main_content"}>
-              <ProcessOrders setOrderRebuild={props.setOrderRebuild} />
-
-              <FinishedOrders setOrderRebuild={props.setOrderRebuild} />
               <PausedOrders setOrderRebuild={props.setOrderRebuild} />
+              <ProcessOrders setOrderRebuild={props.setOrderRebuild} />
+              <FinishedOrders setOrderRebuild={props.setOrderRebuild} />
             </Stack>
           </TabContext>
         </Stack>
@@ -124,7 +121,6 @@ export function OrdersPage(props: any) {
 
               <span className={"order_user_prof"}>
                 {verifiedMemberData?.mb_type ?? "Foydalanuvchi"}
-                Foydalanuvchi
               </span>
             </Box>
 
@@ -134,16 +130,10 @@ export function OrdersPage(props: any) {
               sx={{ mt: "40px", mb: "8px" }}
             ></Box>
 
-            <Box
-              className={
-                verifiedMemberData?.mb_address ?? "Manzil kiritilmagan"
-              }
-            >
-              <div style={{ display: "flex" }}>
-                <LocationOnIcon />
-              </div>
-
-              <div className={"spec_address_txt"}>Tashkent Yunus Abad 4</div>
+            <Box className={"spec_address_txt"}>
+              <div style={{ display: "flex" }}></div>
+              <LocationOnIcon />
+              {verifiedMemberData?.mb_address ?? "Manzil kiritilmagan"}
             </Box>
           </Box>
 

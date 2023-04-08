@@ -25,7 +25,7 @@ const pausedOrdersRetriever = createSelector(
   })
 );
 
-export default function FinishedOrders(props: any) {
+export default function PausedOrders(props: any) {
   /** INITIALIZATIONS */
   const { pausedOrders } = useSelector(pausedOrdersRetriever);
 
@@ -86,16 +86,17 @@ export default function FinishedOrders(props: any) {
                   const product: Product = order.product_data.filter(
                     (ele) => ele._id === item.product_id
                   )[0];
+
                   const image_path = `${serverApi}/${product.product_images[0]}`;
                   return (
                     <Box className={"ordersName_price"}>
-                      <img src={image_path} className={"orderDishImage"} />
+                      <img src={image_path} className={"orderDishImg"} alt="" />
                       <p className={"titleDish"}>{product.product_name}</p>
                       <Box className={"priceBox"}>
                         <p>${item.item_price}</p>
-                        <img src={"/icons/Close.svg"} />
+                        <img src={"/icons/Close.svg"} alt="" />
                         <p>{item.item_quantity}</p>
-                        <img src={"/icons/pause.svg"} />
+                        <img src={"/icons/pause.svg"} alt="" />
                         <p style={{ marginLeft: "15px" }}>
                           ${item.item_price * item.item_quantity}
                         </p>
@@ -104,6 +105,7 @@ export default function FinishedOrders(props: any) {
                   );
                 })}
               </Box>
+
               <Box className={"total_price_box black_solid"}>
                 <Box className={"boxTotal"}>
                   <p>maxsulot narxi</p>
@@ -153,3 +155,5 @@ export default function FinishedOrders(props: any) {
     </TabPanel>
   );
 }
+// o'zgartrildi xato togrlandi 42-43
+// o'zgartrildi xato togrlandi 42-43

@@ -26,10 +26,12 @@ const processOrdersRetriever = createSelector(
 export default function ProcessOrders(props: any) {
   /** INITIALIZATIONS */
   const { processOrders } = useSelector(processOrdersRetriever);
+
+  // HaNNDLER
   const finishOrderHandler = async (event: any) => {
     try {
       const order_id = event.target.value;
-      const data = { order_id: order_id, order_status: "DELETED" };
+      const data = { order_id: order_id, order_status: "FINISHED" };
 
       if (!localStorage.getItem("member_data")) {
         sweetFailureProvider("Please login frist", true);
@@ -44,7 +46,7 @@ export default function ProcessOrders(props: any) {
         props.setOrderRebuild(new Date());
       }
     } catch (err) {
-      console.log("deleteOrderHandler, ERROR:", err);
+      console.log("finishOrderHandler, ERROR:", err);
       sweetErrorHandling(err).then();
     }
   };
@@ -60,16 +62,15 @@ export default function ProcessOrders(props: any) {
                     (ele) => ele._id === item.product_id
                   )[0];
                   const image_path = `${serverApi}/${product.product_images[0]}`;
-
                   return (
                     <Box className={"ordersName_price"}>
-                      <img src={image_path} className={"orderDishImage"} />
+                      <img src={image_path} className={"orderDishImg"} alt="" />
                       <p className={"titleDish"}>{product.product_name}</p>
                       <Box className={"priceBox"}>
                         <p>${item.item_price}</p>
-                        <img src={"/icons/Close.svg"} />
+                        <img src={"/icons/Close.svg"} alt="" />
                         <p>{item.item_quantity}</p>
-                        <img src={"/icons/pause.svg"} />
+                        <img src={"/icons/pause.svg"} alt="" />
                         <p style={{ marginLeft: "15px" }}>
                           ${item.item_price * item.item_quantity}
                         </p>
