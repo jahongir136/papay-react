@@ -2,15 +2,38 @@ import React, { useEffect, useState } from "react";
 import { Box, Stack } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+
+//REDUX
+import { createSelector } from "reselect";
 import { Dispatch } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
+import { setMemberFollowings } from "./slice";
+import { retriveMemberFollowings } from "./selector";
+import { Following } from "../../../types/follow";
+
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setMemberFollowings: (data: Following[]) =>
+    dispach(setMemberFollowings(data)),
+});
+// REDUX SELECTOR
+const memberFollowingsRetriever = createSelector(
+  retriveMemberFollowings,
+  (memberFollowings) => ({
+    memberFollowings,
+  })
+);
 
 const followings = [
-  { mb_nick: "Jonh" },
-  { mb_nick: "Ali" },
-  { mb_nick: "Mic" },
+  { mb_nick: "Johon" },
+  { mb_nick: "Usta Ali" },
+  { mb_nick: "Iqbol" },
 ];
 
 export function MemberFollowing(props: any) {
+  /**INITIALIZATIONS */
+  const { setMemberFollowings } = actionDispatch(useDispatch());
+  const { memberFollowings } = useSelector(memberFollowingsRetriever);
   return (
     <Stack>
       {followings.map((following) => {
