@@ -60,7 +60,7 @@ export function NavbarRestaurant(props: any) {
             </Box>
             {props.verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
-                <NavLink to="/member_page" activeClassName="under-line">
+                <NavLink to="/member-page" activeClassName="under-line">
                   Sahifam
                 </NavLink>
               </Box>
