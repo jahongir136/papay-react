@@ -38,6 +38,8 @@ export function MemberFollowing(props: any) {
     <Stack>
       {followings.map((following) => {
         const image_url = "/auth/default_user.svg";
+
+        //setMemberFollowings
         return (
           <Box className={"follow_box"}>
             <Avatar alt={""} src={image_url} sx={{ width: 89, height: 89 }} />
