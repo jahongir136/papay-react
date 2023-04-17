@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 
@@ -23,9 +23,11 @@ import { EditSharp } from "@mui/icons-material";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import { BoArticleInput } from "../../../types/boArticle";
+import { useHistory } from "react-router-dom";
 
 export const TuiEditor = (props: any) => {
   /**  INITIALIZATIONS */
+  const history = useHistory();
   const editorRef = useRef();
   const [communityArticleData, setCommunityArticleData] =
     useState<BoArticleInput>({
@@ -56,32 +58,39 @@ export const TuiEditor = (props: any) => {
     setCommunityArticleData({ ...communityArticleData });
   };
 
-  const changeTitleHandler = (e: any) => {
-    communityArticleData.art_subject = e.target.value;
-    setCommunityArticleData({ ...communityArticleData });
+  const changeTitleHandler = useCallback(
+    (e: any) => {
+      communityArticleData.art_subject = e.target.value;
+      setCommunityArticleData({ ...communityArticleData });
+    },
+    [communityArticleData.art_subject]
+  );
+
+  const handleRegisterButton = async () => {
+    try {
+      const editor: any = editorRef.current;
+      const art_content = editor?.getInstance().getHTML();
+
+      communityArticleData.art_content = art_content;
+
+      assert.ok(
+        communityArticleData.art_content !== "" &&
+          communityArticleData.bo_id !== "" &&
+          communityArticleData.art_subject !== "",
+        Definer.input_err1
+      );
+
+      const communityService = new CommunityApiService();
+      await communityService.createArticle(communityArticleData);
+      await sweetTopSuccessAlert("Article is created successfully");
+
+      props.setArticlesRebuild(new Date());
+      props.setValue("1");
+    } catch (err) {
+      console.log(`ERROR::: handleRegisterButton ${err}`);
+      sweetErrorHandling(err).then();
+    }
   };
-
-  // const handleRegisterButton = async () => {
-  //   try {
-  //     const editor: any = editorRef.current;
-  //     const art_content = editor?.getInstance().getHTML();
-
-  //     communityArticleData.art_content = art_content;
-
-  //     assert.ok(
-  //       communityArticleData.art_content !== "" &&
-  //         communityArticleData.bo_id !== "" &&
-  //         communityArticleData.art_subject !== "",
-  //       Definer.input_err1
-  //     );
-  //     const communityService = new CommunityApiService();
-  //     await communityService.createArticle(communityArticleData);
-  //     await sweetTopSuccessAlert("Article is created successfully");
-  //   } catch (err) {
-  //     console.log(`ERROR::: handleRegisterButton ${err}`);
-  //     sweetErrorHandling(err).then();
-  //   }
-  // };
 
   return (
     <Stack>
@@ -160,7 +169,7 @@ export const TuiEditor = (props: any) => {
           variant="contained"
           color="primary"
           style={{ margin: "30px", width: "250px", height: "45px" }}
-          // onClick={handleRegisterButton}
+          onClick={handleRegisterButton}
         >
           Register
         </Button>

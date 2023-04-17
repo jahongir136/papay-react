@@ -4,6 +4,7 @@ import assert from "assert";
 import { Definer } from "../../lib/Definer";
 import {
   BoArticle,
+  BoArticleInput,
   SearchArticlesObj,
   SearchMemberArticleObj,
 } from "../../types/boArticle";
@@ -61,7 +62,7 @@ class CommunityApiService {
     }
   }
 
-  public async createArticle(data: BoArticle) {
+  public async createArticle(data: BoArticleInput) {
     try {
       const result = await axios.post(this.path + "/community/create", data, {
         withCredentials: true,
@@ -73,7 +74,7 @@ class CommunityApiService {
       const article: BoArticle = result.data.data;
       return article;
     } catch (err: any) {
-      console.log(`ERROR ::: getTargetArticles ${err.message}`);
+      console.log(`ERROR ::: createArticle ${err.message}`);
       throw err;
     }
   }
