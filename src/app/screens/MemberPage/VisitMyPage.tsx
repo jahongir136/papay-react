@@ -319,7 +319,7 @@ export function VisitMyPage(props: any) {
                     value={"1"}
                     component={() => (
                       <div
-                        className={`menu_box ${value}`}
+                        className={`menu_box `}
                         onClick={() => setValue("1")}
                       >
                         <img src={"/icons/post.svg"} />
@@ -331,10 +331,7 @@ export function VisitMyPage(props: any) {
                     style={{ flexDirection: "column" }}
                     value={"2"}
                     component={() => (
-                      <div
-                        className={`menu_box ${value}`}
-                        onClick={() => setValue("2")}
-                      >
+                      <div className={`menu_box`} onClick={() => setValue("2")}>
                         <img src={"/icons/followers.svg"} />
                         <span>Follower</span>
                       </div>
@@ -344,10 +341,7 @@ export function VisitMyPage(props: any) {
                     style={{ flexDirection: "column" }}
                     value={"3"}
                     component={() => (
-                      <div
-                        className={`menu_box ${value} `}
-                        onClick={() => setValue("3")}
-                      >
+                      <div className={`menu_box`} onClick={() => setValue("3")}>
                         <img src={"/icons/following.svg"} />
                         <span>Following</span>
                       </div>
