@@ -44,6 +44,7 @@ import {
 } from "../../../lib/sweetAlert";
 import CommunityApiService from "../../apiServices/communityApiService";
 import MemberApiService from "../../apiServices/memberApiService";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -74,7 +75,6 @@ const chosenSingleBoArticleRetriever = createSelector(
 );
 
 export function VisitMyPage(props: any) {
-  const { verifiedMemberData } = props;
   // / INITIALIZATIONS /
 
   const {
@@ -94,7 +94,7 @@ export function VisitMyPage(props: any) {
     useState<SearchMemberArticleObj>({ mb_id: "none", page: 1, limit: 4 });
 
   useEffect(() => {
-    if (!localStorage.getItem("member_data")) {
+    if (!verifiedMemberData) {
       sweetFailureProvider("Please login first", true, true);
     }
     const communityService = new CommunityApiService();
@@ -190,7 +190,7 @@ export function VisitMyPage(props: any) {
                       actions_enabled={true}
                       followeRebuild={followeRebuild}
                       setFolloweRebuild={setFolloweRebuild}
-                      mb_id={props.verifiedMemberData?._id}
+                      mb_id={verifiedMemberData?._id}
                     />
                   </Box>
                 </TabPanel>
@@ -202,7 +202,7 @@ export function VisitMyPage(props: any) {
                       actions_enabled={true}
                       followeRebuild={followeRebuild}
                       setFolloweRebuild={setFolloweRebuild}
-                      mb_id={props.verifiedMemberData?._id}
+                      mb_id={verifiedMemberData?._id}
                     />
                   </Box>
                 </TabPanel>
