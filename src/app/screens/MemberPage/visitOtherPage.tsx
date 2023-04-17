@@ -90,14 +90,18 @@ export function VisitOtherPage(props: any) {
   const { chosenMemberBoArticles } = useSelector(
     chosenMemberBoArticlesRetriever
   );
-  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+
   const [followeRebuild, setFolloweRebuild] = useState<boolean>(false);
 
   const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
   const [value, setValue] = useState("1");
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
-    useState<SearchMemberArticleObj>({ mb_id: "none", page: 1, limit: 5 });
-
+    useState<SearchMemberArticleObj>({
+      mb_id: chosen_mb_id,
+      page: 1,
+      limit: 5,
+    });
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   useEffect(() => {
     if (chosen_mb_id === verifiedMemberData?._id) {
       history.push("/member-page");
