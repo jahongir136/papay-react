@@ -158,5 +158,3 @@ export function MySettings(props: any) {
     </Stack>
   );
 }
-
-//"feat: develop Community article links"

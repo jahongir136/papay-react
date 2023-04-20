@@ -281,7 +281,7 @@ export function VisitMyPage(props: any) {
                 </Box>
                 <p className={"user_desc"}>
                   {chosenMember?.mb_description ??
-                    "qushimcha malumot kiritilmagan"}
+                    "qo'shimcha malumot kiritilmagan"}
                 </p>
                 <Box
                   display={"flex"}
