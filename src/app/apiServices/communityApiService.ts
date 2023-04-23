@@ -6,7 +6,7 @@ import {
   BoArticle,
   BoArticleInput,
   SearchArticlesObj,
-  SearchMemberArticleObj,
+  SearchMemberArticlesObj,
 } from "../../types/boArticle";
 
 class CommunityApiService {
@@ -37,7 +37,7 @@ class CommunityApiService {
       const image_name: string = result.data.data;
       return image_name;
     } catch (err: any) {
-      console.log(`ERROR ::: getTargetArticles ${err.message}`);
+      console.log(`ERROR ::: uploadImageToServer ${err.message}`);
       throw err;
     }
   }
@@ -79,7 +79,7 @@ class CommunityApiService {
     }
   }
 
-  public async getMemberCommunityArticles(data: SearchMemberArticleObj) {
+  public async getMemberCommunityArticles(data: SearchMemberArticlesObj) {
     try {
       let url = `/community/articles?mb_id=${data.mb_id}&page=${data.page}&limit=${data.limit}`;
 

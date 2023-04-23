@@ -22,7 +22,7 @@ import TViewer from "../../components/tuiEditor/TViewer";
 import { Member } from "../../../types/user";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { BoArticle, SearchMemberArticleObj } from "../../../types/boArticle";
+import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
 import { useHistory } from "react-router-dom";
 
 //REDUX
@@ -53,9 +53,9 @@ import { verifiedMemberData } from "../../apiServices/verify";
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setChosenMember: (data: Member) => dispach(setChosenMember(data)),
-  setchosenMemberBoArticles: (data: BoArticle[]) =>
+  setChosenMemberBoArticles: (data: BoArticle[]) =>
     dispach(setChosenMemberBoArticles(data)),
-  setchosenSingleBoArticle: (data: BoArticle) =>
+  setChosenSingleBoArticle: (data: BoArticle) =>
     dispach(setChosenSingleBoArticle(data)),
 });
 // REDUX SELECTOR
@@ -81,28 +81,27 @@ const chosenSingleBoArticleRetriever = createSelector(
 export function VisitOtherPage(props: any) {
   //   / INITIALIZATIONS /
   const history = useHistory();
-  const { chosen_mb_id, chosen_art_id } = props;
+  const { verifiedMemberData, chosen_mb_id, chosen_art_id } = props;
   const {
     setChosenMember,
-    setchosenMemberBoArticles,
-    setchosenSingleBoArticle,
+    setChosenMemberBoArticles,
+    setChosenSingleBoArticle,
   } = actionDispatch(useDispatch());
   const { chosenMember } = useSelector(chosenMemberRetriever);
   const { chosenMemberBoArticles } = useSelector(
     chosenMemberBoArticlesRetriever
   );
-
-  const [followeRebuild, setFolloweRebuild] = useState<boolean>(false);
-
   const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
   const [value, setValue] = useState("1");
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
-    useState<SearchMemberArticleObj>({
+    useState<SearchMemberArticlesObj>({
       mb_id: chosen_mb_id,
       page: 1,
       limit: 4,
     });
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+  const [followeRebuild, setFolloweRebuild] = useState<boolean>(false);
+
   useEffect(() => {
     if (chosen_mb_id === verifiedMemberData?._id) {
       history.push("/member-page");
@@ -177,7 +176,7 @@ export function VisitOtherPage(props: any) {
 
   const unsubscribeHandler = async (e: any) => {
     try {
-      assert.ok(verifiedMemberData, Definer.auth_err1);
+      assert.ok(!verifiedMemberData, Definer.auth_err1);
 
       const followService = new FollowApiService();
       await followService.unsubscribe(e.target.value);
@@ -305,7 +304,7 @@ export function VisitOtherPage(props: any) {
                 <p className={"user_desc"}>
                   {" "}
                   {chosenMember?.mb_description ??
-                    "qushimcha malumot kiritilmagan"}
+                    "Qo'shimcha malumot kiritilmagan"}
                 </p>
 
                 <Box

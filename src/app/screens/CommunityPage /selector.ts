@@ -1,5 +1,4 @@
-import { createSelector } from "reselect";
-import { CommunityPage } from ".";
+import { createSelector } from "@reduxjs/toolkit";
 import { AppRootState } from "../../../types/screen";
 
 const selectCommunityPage = (state: AppRootState) => state.communityPage;
